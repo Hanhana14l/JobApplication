@@ -18,6 +18,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    role: {
+      type: DataTypes.ENUM('recruiter', 'applicant'),
+      allowNull: false,
+      // defaultValue: 'applicant',
+    },
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -27,11 +32,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    role: {
-      type: DataTypes.ENUM('recruiter', 'applicant'),
-      allowNull: false,
-      defaultValue: 'applicant',
-    },
+  
     profile_picture: {
       type: DataTypes.STRING,
       allowNull: true,

@@ -12,7 +12,7 @@ module.exports = {
       role: {
         type: Sequelize.ENUM('recruiter', 'applicant'), // Define role as ENUM
         allowNull: false,
-        defaultValue: 'applicant', // Set default role to 'applicant'
+        // defaultValue: 'applicant', // Set default role to 'applicant'
       },
       name: {
         type: Sequelize.STRING,
