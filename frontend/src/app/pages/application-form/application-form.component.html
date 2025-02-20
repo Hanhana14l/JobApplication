@@ -1,0 +1,37 @@
+<div class="application-container">
+    <form [formGroup]="applicationForm" (ngSubmit)="onSubmit()" class="application-form" enctype="multipart/form-data">
+      <h2 class="form-title">Job Application</h2>
+  
+      <div class="form-group">
+        <label for="resume" class="form-label">Resume (PDF/DOCX)</label>
+        <div class="file-input-wrapper">
+          <input type="file" id="resume" accept=".pdf,.docx" (change)="onResumeSelected($event)" required class="file-input">
+          <span class="file-input-button">Choose File</span>
+        </div>
+        <div *ngIf="applicationForm?.get('resume')?.invalid && applicationForm?.get('resume')?.touched" class="error-message">
+          Resume is required
+        </div>
+        <div *ngIf="resumeFile" class="file-info">
+          Selected file: {{ resumeFile.name }}
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="cover_letter" class="form-label">Cover Letter (PDF/DOCX)</label>
+        <div class="file-input-wrapper">
+          <input type="file" id="cover_letter" accept=".pdf,.docx" (change)="onCoverLetterSelected($event)" required class="file-input">
+          <span class="file-input-button">Choose File</span>
+        </div>
+        <div *ngIf="applicationForm?.get('cover_letter')?.invalid && applicationForm?.get('cover_letter')?.touched" class="error-message">
+          Cover letter is required
+        </div>
+        <div *ngIf="coverLetterFile" class="file-info">
+          Selected file: {{ coverLetterFile.name }}
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="applicationForm.invalid" class="submit-button">Submit Application</button>
+    </form>
+  </div>
+  
+  

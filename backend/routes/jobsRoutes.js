@@ -1,6 +1,7 @@
 const express = require("express");
 const { Job } = require("../models");
 const router = express.Router();
+const authMiddleware = require('../middleware/authMiddleware');
 
 // Get all jobs
 router.get("/jobs", async (req, res) => {
@@ -14,11 +15,11 @@ router.get("/jobs", async (req, res) => {
 });
 
 // Create a new job
-router.post("/jobs", async (req, res) => {
-    const { title, description, categoryId, salary, location } = req.body; // Adjust fields based on your database schema
-  
+router.post("/jobs",authMiddleware, async (req, res) => {
+    const { title, description, category, location ,salary} = req.body; 
+    const recruiter_id = req.user.id;
     try {
-      const newJob = await Job.create({ title, description, categoryId, salary, location });
+      const newJob = await Job.create({recruiter_id ,title, description, category, location, salary});
       res.status(201).json({ message: "Job created successfully", newJob });
     } catch (error) {
       console.error(error);

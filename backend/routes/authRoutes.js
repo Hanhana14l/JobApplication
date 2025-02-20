@@ -3,10 +3,15 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const { User } = require("../models"); // Adjust based on your models structure
 const router = express.Router();
+const multer = require('multer');
+// const authController = require('../controllers/authController');
+
+const upload = multer({ dest: 'uploads/' });
+
 require("dotenv").config();
 
 // User Registration
-router.post("/register", async (req, res) => {
+router.post("/register", upload.single('profilePicture'), async (req, res) => {
   const { name,role, email, password } = req.body;
   console.log('Incoming Request Body:', req.body); 
   try {
@@ -55,7 +60,10 @@ router.post("/login", async (req, res) => {
       expiresIn: "1h",
     });
 
-    res.status(200).json({ message: "Login successful", token });
+    res.status(200).json({ message: "Login successful", token,
+      role: user.role,
+      userId: user.id
+     });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error" });

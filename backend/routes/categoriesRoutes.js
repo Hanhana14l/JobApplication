@@ -5,7 +5,9 @@ const router = express.Router();
 // Get all categories
 router.get("/categories", async (req, res) => {
   try {
-    const categories = await Category.findAll();
+    const categories = await Category.findAll({
+      attributes: ['id', 'name'] // Explicitly specify columns
+    });
     res.status(200).json(categories);
   } catch (error) {
     console.error(error);
@@ -15,7 +17,7 @@ router.get("/categories", async (req, res) => {
 
 // Create a new category
 router.post("/categories", async (req, res) => {
-    const { name, description } = req.body; // Adjust fields based on your database schema
+    const { name} = req.body; // Adjust fields based on your database schema
   
     try {
       const newCategory = await Category.create({ name, description });

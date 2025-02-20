@@ -1,0 +1,85 @@
+<!-- <div class="container">
+    <h1>Welcome to Job-Application-Portal</h1>
+    <div class="search-container">
+      <button (click)="toggleFilters()" class="filter-btn">
+        <i class="fas fa-filter"></i> Filter
+      </button>
+      <div class="search-bar">
+        <input 
+          type="text" 
+          [(ngModel)]="searchQuery" 
+          placeholder="Search..."
+          (keyup.enter)="onSearch()"
+        >
+        <button (click)="onSearch()">Search</button>
+      </div>
+    </div>
+  
+    <div *ngIf="showFilters" class="filters">
+      
+      <p>Filter options will go here</p>
+    </div>
+  
+    <div class="job-list">
+      <div *ngFor="let job of filteredJobs" class="job-item">
+        <h2>{{job.title}}</h2>
+        <p>{{job.company}} - {{job.location}}</p>
+        <p>{{job.description}}</p>
+        <button (click)="applyForJob(job.job_id)" class="apply-btn">Apply</button>
+      </div>
+    </div>
+  </div>
+  
+   -->
+   <div class="main-container">
+    <h1 class="title">Welcome to Job-Application-Portal</h1>
+    <div class="search-section">
+      <div class="search-container">
+        <button (click)="toggleFilters()" class="filter-button">
+          <svg xmlns="http://www.w3.org/2000/svg" class="filter-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
+          </svg>
+          Filter
+        </button>
+        <div class="search-bar">
+          <input
+            type="text"
+            [(ngModel)]="searchQuery"
+            placeholder="Search jobs..."
+            (keyup.enter)="onSearch()"
+            class="search-input"
+          >
+          <svg xmlns="http://www.w3.org/2000/svg" class="search-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <button (click)="onSearch()" class="search-button">
+          Search
+        </button>
+      </div>
+      <div *ngIf="showFilters" class="filters">
+        <select [(ngModel)]="selectedCategory" (change)="onCategoryChange()" class="category-filter">
+          <option value="">All Categories</option>
+          <option *ngFor="let category of categories" [value]="category.name">
+            {{ category.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+    <div class="job-list">
+      <div *ngFor="let job of filteredJobs" class="job-item">
+        <h2 class="job-title">{{job.title}}</h2>
+        <p class="job-details">
+          <span class="location">{{ job.location }}</span> - 
+    <span class="salary">{{ job.salary }}</span>
+    </p>
+    <p class="job-category">{{ job.category }}</p>
+        <p class="job-description">{{job.description}}</p>
+        <button (click)="applyForJob(job.job_id)" class="apply-button">
+          Apply
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  

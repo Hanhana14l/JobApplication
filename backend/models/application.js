@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     jobId: DataTypes.INTEGER,
     applicantId: DataTypes.INTEGER,
     resume: DataTypes.STRING,
+    cover_letter: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     status: DataTypes.STRING
   }, {
     sequelize,

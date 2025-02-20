@@ -6,16 +6,25 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { JobPostsComponent } from './pages/job-posts/job-posts.component';
 import { JobAddingFormComponent } from './pages/job-adding-form/job-adding-form.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ApplicationFormComponent } from './pages/application-form/application-form.component';
 import { JobDetailComponent } from './pages/job-detail/job-detail.component';
-
+import { JobPortalComponent } from './pages/job-portal/job-portal.component';
+import { ApplingFormComponent } from './pages/appling-form/appling-form.component';
+import { AuthGuard, RoleGuard } from './guards/auth.guard';
 const routes: Routes = [
-  {path: "", component: HomeComponent},
-  {path: "jobPosts", component: JobPostsComponent},
+  {path: "", component: JobPortalComponent},
+  {path: "jobPosts", component: JobPostsComponent,
+  },
   {path: "login", component: LoginComponent},
   {path: "registration", component: RegistrationComponent},
   {path: "profile", component: ProfileComponent},
-  {path: "jobAdding", component: JobAddingFormComponent},
+  {path: "jobAdding", 
+    component: JobAddingFormComponent,
+    canActivate: [AuthGuard, RoleGuard],
+    data: { expectedRole: 'recruiter' }
+  },
   {path: "jobDetail", component: JobDetailComponent},
+  { path: 'apply/:id', component: ApplicationFormComponent },
   {path: "**", redirectTo: "", pathMatch: "full"},
 ];
 

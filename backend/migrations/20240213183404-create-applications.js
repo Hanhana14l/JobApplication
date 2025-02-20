@@ -14,7 +14,7 @@ module.exports = {
         allowNull: false, // Ensure jobId is not null
         references: {
           model: 'Jobs', // Reference the Jobs table
-          key: 'id',
+          key: 'job_id',
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE',
@@ -33,17 +33,21 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false, // Ensure the resume field is mandatory
       },
+      cover_letter: {
+        type: Sequelize.STRING,
+        allowNull: true, // Allow NULL values
+      },
       status: {
         type: Sequelize.ENUM('pending', 'accepted', 'rejected'), // Use Sequelize.ENUM
         allowNull: false,
         defaultValue: 'pending',
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),

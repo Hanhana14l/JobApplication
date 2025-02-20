@@ -2,8 +2,20 @@
 <nav class="navbar">
     <div class="navbar-brand">Job Application Portal</div>
     <div class="navbar-buttons">
-      <button class="btn btn-login" routerLink="/login">Login</button>
-      <button class="btn btn-signup" routerLink="/registration">Sign Up</button>
+      
+      <button class="btn btn-login" routerLink="/">Home</button>
+      
+      <div *ngIf="!isLoggedIn()">
+        <button class="btn btn-login" routerLink="/login">Login</button>
+        <button class="btn btn-signup" routerLink="/registration">Sign Up</button>
+      </div>
+      <div *ngIf="isLoggedIn()">
+        <button *ngIf="userRole === 'recruiter'"
+        class="btn btn-login" 
+        routerLink="/jobAdding">Add Job</button>
+        <button class="btn btn-logout" (click)="logout()">Logout</button>
+      </div>
+      
     </div>
   </nav>
   

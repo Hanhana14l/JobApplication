@@ -3,7 +3,8 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
-    background-color: #f8f9fa;
+    background: linear-gradient(to right, #103ce7, #64e9ff);
+    border-radius: 8px;
   }
   
   .navbar-brand {
@@ -29,6 +30,10 @@
     color: white;
   }
   
+  .btn-logout {
+    background-color: #f3f6fa;
+    color: rgb(10, 10, 10);
+  }
   .btn-signup {
     background-color: #28a745;
     color: white;

@@ -42,7 +42,8 @@ export class RegistrationComponent implements OnInit {
       if (this.selectedFile) {
         formData.append('profilePicture', this.selectedFile, this.selectedFile.name);
       }
-
+      formData.forEach((value, key) => {
+        console.log(key, value);})
        // Send the form data to the backend
        this.http.post('http://localhost:5000/api/auth/register', formData).subscribe(
         (response: any) => {
@@ -55,7 +56,7 @@ export class RegistrationComponent implements OnInit {
         }
         
       );
-      // console.log('Form submitted', formData);
+      console.log('Form submitted', formData);
       // You can add your API call here
     }
   }

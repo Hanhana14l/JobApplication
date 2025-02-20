@@ -39,7 +39,7 @@
   
       <mat-form-field appearance="fill">
         <mat-label>Salary</mat-label>
-        <input matInput formControlName="salary" type="number" required>
+        <input matInput formControlName="salary" type="text" required>
         <mat-error *ngIf="jobForm.get('salary')?.invalid && jobForm.get('salary')?.touched">
           Valid salary is required
         </mat-error>

@@ -21,7 +21,12 @@ import { JobAddingFormComponent } from './pages/job-adding-form/job-adding-form.
 import { HomeComponent } from './pages/home/home.component';
 import { JobDetailComponent } from './pages/job-detail/job-detail.component';
 import { NavBarComponent } from './pages/nav-bar/nav-bar.component';
-import { ApplingFormComponent } from './pages/appling-form/appling-form.component'; 
+import { ApplingFormComponent } from './pages/appling-form/appling-form.component';
+import { JobPortalComponent } from './pages/job-portal/job-portal.component';
+import { ApplicationFormComponent } from './pages/application-form/application-form.component'; 
+import { AuthGuard, RoleGuard } from './guards/auth.guard';
+
+
 
 @NgModule({
   declarations: [
@@ -30,12 +35,14 @@ import { ApplingFormComponent } from './pages/appling-form/appling-form.componen
     RegistrationComponent,
     ProfileComponent,
     JobPostsComponent,
-    JobAddingFormComponent,
+   
     HomeComponent,
     JobDetailComponent,
     NavBarComponent,
-    HttpClientModule, 
-    ApplingFormComponent
+    JobAddingFormComponent,
+    ApplingFormComponent,
+    JobPortalComponent,
+    ApplicationFormComponent
   ],
 
   imports: [
@@ -43,6 +50,8 @@ import { ApplingFormComponent } from './pages/appling-form/appling-form.componen
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule ,
+ 
+    HttpClientModule,
     BrowserAnimationsModule,
    MatInputModule,
     MatSelectModule ,
@@ -51,7 +60,9 @@ import { ApplingFormComponent } from './pages/appling-form/appling-form.componen
 
   ],
   providers: [
-    provideClientHydration()
+    provideClientHydration(),
+    AuthGuard,
+    RoleGuard
   ],
   bootstrap: [AppComponent]
 })

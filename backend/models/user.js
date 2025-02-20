@@ -41,6 +41,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    timestamps: true, // Enable timestamps
+    createdAt: 'created_at', // Map to the `created_at` column
+    updatedAt: 'updated_at' // Optional: If you want snake_case for updatedAt too
   });
   return User;
 };
