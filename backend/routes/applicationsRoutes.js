@@ -1,5 +1,5 @@
 const express = require("express");
-const { Application } = require("../models"); // Adjust the path based on your project structure
+const { Application, Job } = require("../models"); // Adjust the path based on your project structure
 const router = express.Router();
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/' });
@@ -18,16 +18,16 @@ router.get("/applications", async (req, res) => {
 
 // Create a new application
 router.post("/applications", upload.fields([{ name: 'resume' }, { name: 'cover_letter' }]), authMiddleware, async (req, res) => {
-    const { applicantId, jobId, status } = req.body; 
+    const { jobId } = req.body; 
     const parsedApplicantId = req.user.id;
     const parsedJobId = parseInt(jobId, 10);
 
-    if (isNaN(parsedApplicantId) || isNaN(parsedJobId)) {
-      return res.status(400).json({ message: "Invalid applicantId or jobId" });
-  }
+  //   if (isNaN(parsedApplicantId) || isNaN(parsedJobId)) {
+  //     return res.status(400).json({ message: "Invalid applicantId or jobId" });
+  // }
 
   const jobExists = await Job.findByPk(parsedJobId);
-  if (!jobExists) {
+  if (!await Job.findByPk(parsedJobId)) {
       return res.status(400).json({ message: "Job ID does not exist" });
   }
 
@@ -40,7 +40,6 @@ router.post("/applications", upload.fields([{ name: 'resume' }, { name: 'cover_l
         applicantId: parsedApplicantId, 
         jobId: parsedJobId,
         resume: resumePath, 
-        status, 
         cover_letter: coverLetterPath});
       res.status(201).json({ message: "Application created successfully", newApplication });
     } catch (error) {

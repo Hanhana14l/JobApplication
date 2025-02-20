@@ -57,25 +57,25 @@ export class ApplicationFormComponent implements OnInit{
   }
 
   onSubmit() {
-    const applicantId = localStorage.getItem('userId');
-    console.log("this is the applicantId:", applicantId);
-  if (!applicantId) {
-    console.error("User not logged in");
-    return;
-  }
-    if (this.applicationForm.valid) {
-      const applicantId = localStorage.getItem("userId");
-      if (!applicantId) {
-        console.error("User not logged in");
-        return;
-      }
+  //   const applicantId = localStorage.getItem('userId');
+  //   console.log("this is the applicantId:", applicantId);
+  // if (!applicantId) {
+  //   console.error("User not logged in");
+  //   return;
+  // }
+    // if (this.applicationForm.valid) {
+    //   const applicantId = localStorage.getItem("userId");
+    //   if (!applicantId) {
+    //     console.error("User not logged in");
+    //     return;
+    //   }
 
       const formData = new FormData();
       formData.append('resume', this.resumeFile!);
       formData.append('cover_letter', this.coverLetterFile!);
-      formData.append('applicantId', applicantId);
+      // formData.append('applicantId', applicantId);
       formData.append('jobId', this.jobId);
-      formData.append('status', 'Submitted');
+      // formData.append('status', 'Submitted');
 
       this.applicationService.submitApplication(formData).subscribe(
         (response) => {
@@ -91,4 +91,4 @@ export class ApplicationFormComponent implements OnInit{
       );
     }
   }
-}
+
